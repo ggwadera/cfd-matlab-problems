@@ -1,0 +1,50 @@
+\documentclass[12pt, a4paper, twoside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+%% Fonts
+\usepackage{lmodern}
+%\usepackage{mathptmx} % Times New Roman
+%\usepackage{fouriernc}
+%\usepackage{newpxtext, newpxmath} % Palatino
+
+\usepackage{indentfirst} % paragraph after title
+\usepackage{siunitx} % SI units
+\usepackage[bookmarks, hidelinks]{hyperref} % links for sections
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{esdiff}
+\usepackage{fancyhdr}
+\usepackage[nodayofweek,level]{datetime}
+
+\numberwithin{equation}{section} % number equations by section
+\graphicspath{{figures/}}
+
+%% Fancy Header - page number at the right side of the page
+\lhead{} \chead{} \rhead{} %sets header left center right
+\lfoot{} \cfoot{} \rfoot{\thepage} %sets footer left center right
+\renewcommand{\headrulewidth}{0.0pt} %optional horizontal rule thickness
+\renewcommand{\footrulewidth}{0.0pt} %optional horizontal rule thickness
+\pagestyle{fancy}
+
+\title{Computational Heat Transfer and Fluid Mechanics - Problem 1}
+\author{Guilherme Gwadera}
+\date{\today}
+
+
+
+\begin{document}
+
+%\newgeometry{margin=2cm}
+\input{cover}
+%\restoregeometry
+\input{introduction.tex}
+\input{results.tex}
+\input{conclusion.tex}
+
+\end{document}

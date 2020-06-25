@@ -1,0 +1,84 @@
+\section{Código}
+
+\begin{minted}[
+    fontsize=\small,
+    linenos,
+    fontfamily=courier
+]{matlab}
+%% Parâmetros e Constantes
+
+k_A = 10;       k_B = 1;        % Condutividade - W/(m*K)
+L_A = 0.069;    L_B = 0.031;    % Comprimento - m
+N_A = 3;        N_B = N_A;      % Número de volumes em A e B
+h   = 100;                      % Coeficiente convectivo - W/(m^2*K)
+T_inf = 40;                     % Temperatura do fluido - °C
+q_presc = 6000;                 % Fluxo prescrito - W/m^2
+Area = 1;                       % Área da face - m^2
+exato = [327.4, 100];           % Solução exata
+
+%% Discretização e Inicialização
+
+dx_A = L_A / (N_A - 0.5);       % Distância entre pontos em A
+dx_B = L_B / (N_B - 0.5);       % Distância entre pontos em B
+N    = N_A + N_B;               % Número total de volumes
+dx   = [ones(1, N_A) .* dx_A, ones(1, N_B) .* dx_B];
+dx_w = [0, ones(1, N_A-1) .* dx_A./2, ...
+        ones(1, N_B).*dx_B./2];      % distâncias entre cada P e w
+dx_e = [ones(1, N_A) .* dx_A./2, ...
+        ones(1, N_B-1).*dx_B./2, 0]; % distâncias entre cada P e e
+k = [ones(1, N_A) .* k_A, ones(1, N_B) .* k_B];  % k em cada ponto
+A = zeros(N, N);                % Matriz dos coeficientes
+b = zeros(N, 1);                % Vetor dos termos independentes
+
+%% Resolução
+
+% Construção do sistema de equações
+for i = 1:N
+    % Condutividade nas interfaces (kw e ke)
+    if i == 1
+        fe = dx_w(i+1) / (dx_e(i) + dx_w(i+1));
+        ke = 1 / ((1 - fe) / k(i) + fe / k(i+1));   % resistências
+        %ke = fe * k(i) + (1 - fe) * k(i+1);        % linear
+    elseif i == N
+        fw = dx_e(i-1) / (dx_w(i) + dx_e(i-1));
+        kw = 1 / ((1 - fw) / k(i) + fw / k(i-1));   % resistências
+        %kw = fw * k(i) + (1 - fw) * k(i-1);        % linear
+    else
+        fe = dx_w(i+1) / (dx_e(i) + dx_w(i+1));
+        fw = dx_e(i-1) / (dx_w(i) + dx_e(i-1));
+        ke = 1 / ((1 - fe) / k(i) + fe / k(i+1));   % resistências
+        %ke = fe * k(i) + (1 - fe) * k(i+1);        % linear
+        kw = 1 / ((1 - fw) / k(i) + fw / k(i-1));   % resistências
+        %kw = fw * k(i) + (1 - fw) * k(i-1);        % linear
+    end
+ 
+ 
+ 
+    if i == 1
+        % Fronteira com fluxo prescrito
+        dx_PE = dx_e(i) + dx_w(i+1);    % distância entre P e E
+        ae = ke * Area / dx_PE;
+        ap = ae;
+        b(i) = q_presc * Area;
+        A(i, [i, i+1]) = [ap, -ae];
+    elseif i == N
+        % Fronteira com fluxo convectivo
+        dx_PW = dx_w(i) + dx_e(i-1);    % distância entre P e W
+        aw    = kw * Area / dx_PW;
+        ap    = aw + h * Area;
+        b(i)  = h * Area * T_inf;
+        A(i, [i-1, i]) = [-aw, ap];
+    else
+        % Pontos no interior da malha
+        dx_PE = dx_e(i) + dx_w(i+1);
+        dx_PW = dx_w(i) + dx_e(i-1);
+        ae    = ke * Area / dx_PE;
+        aw    = kw * Area / dx_PW;
+        ap    = ae + aw;
+        A(i, [i-1, i, i+1]) = [-aw, ap, -ae];
+    end
+end
+
+% Resolução do sistema de equações
+T = A \ b;
+\end{minted}
