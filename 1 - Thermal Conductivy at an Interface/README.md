@@ -2,7 +2,7 @@
 
 ## Thermal Conductivity Evaluation at an Interface
 
-Please open the pdf included in this folder to understand about the implementation and results.
+Please open the [PDF](https://github.com/ggwadera/cfd-matlab-problems/blob/master/1%20-%20Thermal%20Conductivy%20at%20an%20Interface/Problem%201.pdf) included in this folder to understand about the implementation and results.
 
 The proposed problem consists of a wall composed by two materials
 of different thermal conductivities, with a prescribed heat flow *q*'' = 6000 W/m<sup>2</sup>
