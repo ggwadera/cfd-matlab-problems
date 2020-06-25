@@ -5,8 +5,8 @@
 Please open the pdf included in this folder to understand about the implementation and results.
 
 The proposed problem consists of a wall composed by two materials
-of different thermal conductivities, with a prescribed heat flow *q*'' = 6000 W/m^2
-on the left border, and a convective heat flow on the right border, with *h* = 100 W/(m^2 K) and *T*<sub>∞</sub> = 40 °C. For this case, steady state is assumed.
+of different thermal conductivities, with a prescribed heat flow *q*'' = 6000 W/m<sup>2</sup>
+on the left border, and a convective heat flow on the right border, with *h* = 100 W/(m<sup>2</sup> K) and *T*<sub>∞</sub> = 40 °C. For this case, steady state is assumed.
 
 ![Problem representation.](figures/problema.svg)
 
