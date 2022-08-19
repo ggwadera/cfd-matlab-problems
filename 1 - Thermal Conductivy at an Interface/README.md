@@ -22,3 +22,5 @@ Abra o [PDF](https://github.com/ggwadera/cfd-matlab-problems/blob/master/1%20-%2
 
 O problema proposto consiste de uma parede composta por dois materiais de condutividades térmicas diferentes, com um fluxo de calor prescrito na fronteira esquerda *q*'' = 6000 W/m<sup>2</sup>
 , e um fluxo de calor convectivo na fronteira direita *h* = 100 W/(m<sup>2</sup> K) e *T*<sub>∞</sub> = 40 °C. Para este caso é assumido estado estacionário.
+
+É solicitado encontrar o perfil de temperatura ao longo da parede usando dois métodos diferentes para avaliar a condutividade térmica na interface dos materiais: resistências térmicas e variação linear. Também é solicitado comparar os resultados de ambos os métodos com a solução analítica exata.
