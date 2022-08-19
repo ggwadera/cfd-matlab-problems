@@ -29,7 +29,7 @@ By making an energy balance at the borders and at the contact interface, the exa
     T_s &= \SI{100}{\celsius}
 \end{align*}
 
-For the numerical solution of the temperature profile, it is necessary to discretize the differential equation obtained by an energy balance (Equation \ref{eq:eqdif}), also applying the two boundary conditions (Equations \ref{eq:cc1} e \ref{eq:cc2}).
+For the numerical solution of the temperature profile, it is necessary to discretize the differential equation obtained by an energy balance (Equation \ref{eq:eqdif}), also applying the two boundary conditions (Equations \ref{eq:cc1} and \ref{eq:cc2}).
 
 \begin{align} 
     \diff{}{x} \left( k \diff{T}{x} \right) &= 0 \label{eq:eqdif} \\
@@ -46,7 +46,7 @@ The points in the $A$ part are separated by a distance $\delta x_A$ and the poin
 
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=1.2]{malha.eps}
+    \includegraphics[scale=1.2]{mesh.eps}
     \caption{Schematic representation of the mesh.}
     \label{fig:mesh}
 \end{figure}

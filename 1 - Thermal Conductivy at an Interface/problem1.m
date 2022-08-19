@@ -9,7 +9,7 @@ q_presc = 6000;                 % Prescribed heat flux - W/m^2
 Area = 1;                       % Surface area - m^2
 exact = [327.4, 100];           % Exact solution values
 
-%% Inicialization
+%% Data initialization
 
 N  = sum(Ni);                        % Total volume numbers
 dx = repelem(Li ./ (Ni - 0.5), Ni);  % Width of each volume
